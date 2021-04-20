@@ -22,20 +22,27 @@ func main() {
 	fmt.Println("Initializing new ring")
 	ring := consistentHashing.NewRing()
 	fmt.Println("Adding Node with id : 1234")
-	ring.AddNode("1234")
+	ring.AddNode("1234", 2)
 	fmt.Println("Adding Node with id : 12344")
-	ring.AddNode("12344")
+	ring.AddNode("12344", 1)
 	fmt.Println("Adding Node with id : 12346")
-	ring.AddNode("12346")
+	ring.AddNode("12346", 2)
 	print(ring.Nodes)
 	fmt.Println("Removing a node 1234")
-	ring.RemoveNode("1234")
-	print(ring.Nodes)
-	fmt.Println("Removing a non existing node : 123467889")
-	err := ring.RemoveNode("123467889")
+	err := ring.RemoveNode("1234")
 	if err != nil {
 		fmt.Println(err)
 	} else {
 		print(ring.Nodes)
 	}
+	fmt.Println("Removing a non existing node : 123467889")
+	err = ring.RemoveNode("123467889")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		print(ring.Nodes)
+	}
+	fmt.Printf("Get node id for '%s' : %v\n", "Hello", ring.GetNodeId("Hello"))
+	fmt.Printf("Get node id for '%s' : %v\n", "Bye", ring.GetNodeId("Bye"))
+	fmt.Printf("Get node id for '%s' : %v\n", "HelloWorld", ring.GetNodeId("HelloWorld"))
 }
