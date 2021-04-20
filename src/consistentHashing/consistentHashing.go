@@ -75,10 +75,6 @@ func hashId(id string) uint32 {
 	return crc32.ChecksumIEEE([]byte(id))
 }
 
-func HashId(id string) uint32 {
-	return crc32.ChecksumIEEE([]byte(id))
-}
-
 // Implementing Sort method on Nodes : Len function
 func (nodes Nodes) Len() int {
 	return len(nodes)
